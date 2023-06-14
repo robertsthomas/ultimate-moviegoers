@@ -27,7 +27,7 @@ export default function Home() {
 
   const fetcher = (url: string) => fetch(url).then((data) => data.json());
   const { data, isLoading } = swr(
-    `https://api.themoviedb.org/3/movie/${filter}?api_key=f3c507998cbb0454425758a0eddd7ba9`,
+    `https://api.themoviedb.org/3/movie/${filter}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     fetcher
   );
 

@@ -22,7 +22,7 @@ type Params = {
 
 async function getMovie(movieId: string) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=f3c507998cbb0454425758a0eddd7ba9`
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
   ).then((data) => data.json());
 
   return res;

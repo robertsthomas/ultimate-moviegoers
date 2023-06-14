@@ -32,7 +32,7 @@ export const MovieSearchModal = ({ isOpen }: { isOpen: boolean }) => {
   const fetcher = (url: string) => fetch(url).then((data) => data.json());
   const { data, isLoading } = swr(
     `
-    https://api.themoviedb.org/3/search/movie?api_key=f3c507998cbb0454425758a0eddd7ba9&query=${searchQuery}`,
+    https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${searchQuery}`,
     fetcher
   );
 
