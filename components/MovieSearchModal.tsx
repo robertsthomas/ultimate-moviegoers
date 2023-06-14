@@ -20,6 +20,7 @@ import { useState, useEffect, ChangeEvent } from "react";
 import swr from "swr";
 import { MovieCard } from "./MovieCard";
 import { Movie } from "@/types";
+import Link from "next/link";
 
 export const MovieSearchModal = ({ isOpen }: { isOpen: boolean }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,19 +72,25 @@ export const MovieSearchModal = ({ isOpen }: { isOpen: boolean }) => {
           </InputGroup>
 
           <Box>
-            <Center height={"400px"}>
-              {!data?.results.length && searchQuery && !isLoading && (
+            {!data?.results.length && searchQuery && !isLoading && (
+              <Center height={"400px"}>
                 <Text>No movies available. Try another search</Text>
-              )}
-              {isLoading && <Spinner />}
-            </Center>
+              </Center>
+            )}
+            {isLoading && (
+              <Center height={"400px"}>
+                <Spinner />
+              </Center>
+            )}
 
             <Box py={14}>
               {!isLoading && data.results && (
                 <Grid templateColumns="repeat(6, 1fr)" gap={6}>
                   {data.results.map((movie: Movie) => (
                     <GridItem key={movie.id}>
-                      <MovieCard key={movie.id} movie={movie} />
+                      <Link href={`/movie/${movie.id}`}>
+                        <MovieCard key={movie.id} movie={movie} />
+                      </Link>
                     </GridItem>
                   ))}
                 </Grid>

@@ -18,6 +18,7 @@ import {
 import swr from "swr";
 import { ArrowUpIcon, Search2Icon } from "@chakra-ui/icons";
 import { MovieSearchModal } from "@/components/MovieSearchModal";
+import Link from "next/link";
 
 export default function Home() {
   const [filter, setFilter] = useState("now_playing");
@@ -62,11 +63,14 @@ export default function Home() {
           <Box>
             <Heading>Ultimate Moviegoers</Heading>
           </Box>
-          <HStack>
+          <HStack gap={10}>
             <IconButton
               onClick={() => setIsModalOpen(true)}
               aria-label="search button"
               icon={<Search2Icon />}
+              size={"md"}
+              colorScheme="blue"
+              variant="solid"
             />
             <Select
               variant={"filled"}
@@ -88,7 +92,9 @@ export default function Home() {
             <Grid templateColumns="repeat(4, 1fr)" gap={6}>
               {data.results.map((movie: Movie) => (
                 <GridItem key={movie.id}>
-                  <MovieCard key={movie.id} movie={movie} />
+                  <Link href={`/movie/${movie.id}`}>
+                    <MovieCard key={movie.id} movie={movie} />
+                  </Link>
                 </GridItem>
               ))}
             </Grid>

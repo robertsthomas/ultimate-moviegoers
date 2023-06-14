@@ -8,4 +8,5 @@ export type Movie = {
   title: string;
   vote_count: number;
   vote_average: number;
+  genres: any[];
 };
